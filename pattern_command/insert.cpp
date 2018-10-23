@@ -8,5 +8,5 @@ void InsertCommand::Execute()
 }
 void InsertCommand::Undo()
 {
-	doc->Remove(line);
+	doc->Remove(line,);
 }

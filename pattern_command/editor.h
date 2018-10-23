@@ -41,7 +41,7 @@ public:
 	InsertCommand(int _line, const std::string & _str) : line(_line), str(_str) {}
 
 	void Execute();
-
+	void Redo();
 	void Undo();
 };
 
