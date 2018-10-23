@@ -1,12 +1,14 @@
-#include "editor.h"
-
+#include "command.h"
 
 
 void InsertCommand::Execute()
 {
-	doc->Insert(line, str);
+	doc->Insert(ind, str);
 }
+
 void InsertCommand::Undo()
 {
-	doc->Remove(line,);
+	doc->Remove(ind, ind + str.size() - 1);
 }
+
+

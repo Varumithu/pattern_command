@@ -7,10 +7,17 @@
 
 
 
-
+void Editor::clear_undone() {
+	while (UndoneCommands.size() > 0) {
+		command = UndoneCommands.back();
+		UndoneCommands.pop_back();
+		delete command;
+	}
+}
 
 void Editor::Insert(int line, std::string str)
 {
+	clear_undone();
 	command = new InsertCommand(line, str);
 	command->setDocument(&doc);
 	command->Execute();
@@ -30,11 +37,13 @@ void Editor::Redo() {
 	if (UndoneCommands.size() > 0) {
 		command = UndoneCommands.back();
 		UndoneCommands.pop_back();
-		command->Redo();
+		command->Execute();
+		DoneCommands.push_back(command);
 	}
 }
 void Editor::Print()
 {
+	clear_undone();
 	doc.Print();
 }
 
